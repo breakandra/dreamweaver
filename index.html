@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DreamWeaver — Peta Mimpi Interaktif</title>
+  <meta name="description" content="Ketik mimpimu, dan DreamWeaver menenunnya menjadi peta simbol interaktif beserta tafsirnya." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,500;0,9..144,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-glyph">🌙</span>
+      <div>
+        <h1>DreamWeaver</h1>
+        <p class="tagline">Tenun mimpimu menjadi peta simbol</p>
+      </div>
+    </div>
+    <div class="counter">
+      <span id="symbolCount">0</span>
+      <small>simbol</small>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- Left: input + journal -->
+    <aside class="sidebar">
+      <section class="card">
+        <label class="card-title" for="dreamText">Ceritakan mimpimu</label>
+        <textarea id="dreamText" rows="6" placeholder="Semalam aku terbang di atas lautan gelap, lalu air berubah menjadi hutan dan seekor ular keluar dari rumah tua..."></textarea>
+        <div class="btn-row">
+          <button id="weaveBtn" class="btn primary">✨ Tenun Mimpi</button>
+          <button id="sampleBtn" class="btn ghost">Contoh</button>
+          <button id="clearBtn" class="btn ghost">Bersihkan</button>
+        </div>
+        <p class="hint">Tip: tekan <kbd>Ctrl</kbd>+<kbd>Enter</kbd> untuk menenun.</p>
+      </section>
+
+      <section class="card">
+        <div class="card-title-row">
+          <span class="card-title">Jurnal Mimpi</span>
+        </div>
+        <p id="journalEmpty" class="muted">Belum ada mimpi tersimpan. Tenun lalu tekan <em>Simpan</em>.</p>
+        <ul id="journalList" class="journal"></ul>
+      </section>
+    </aside>
+
+    <!-- Right: the map -->
+    <section class="stage">
+      <div class="stage-tools">
+        <button id="saveBtn" class="btn small">💾 Simpan</button>
+        <button id="exportBtn" class="btn small">🖼️ Export PNG</button>
+      </div>
+      <canvas id="mapCanvas"></canvas>
+
+      <div id="emptyState" class="empty-state">
+        <div class="empty-orb">🌙</div>
+        <h2>Petamu masih kosong</h2>
+        <p>Tulis mimpimu di sebelah kiri lalu tekan <strong>Tenun Mimpi</strong>. Simbol-simbol akan muncul dan saling terhubung. Klik tiap simbol untuk melihat maknanya.</p>
+      </div>
+
+      <div id="infoPanel" class="info-panel hidden">
+        <div class="ip-head">
+          <span id="panelGlyph" class="ip-glyph">🌙</span>
+          <div>
+            <h3 id="panelTitle">Symbol</h3>
+            <span id="panelCat" class="ip-cat">category</span>
+          </div>
+        </div>
+        <p id="panelMeaning" class="ip-meaning"></p>
+        <p id="panelCount" class="ip-count hidden"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>DreamWeaver menafsirkan simbol untuk refleksi & hiburan — bukan nasihat medis atau ramalan. Semua data mimpimu tersimpan lokal di browser ini.</p>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="js/symbols.js"></script>
+  <script src="js/parser.js"></script>
+  <script src="js/graph.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
